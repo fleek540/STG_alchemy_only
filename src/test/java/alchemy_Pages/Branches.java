@@ -31,8 +31,7 @@ import org.openqa.selenium.support.PageFactory;
 import Utilities.BaseClass;
 import Utilities.Data;
 import io.qameta.allure.Allure;
-import plastic_Bank_Pages.PB_Member_Profile;
-import plastic_Bank_Pages.PB_Register_CollectionPoint;
+
 
 
 public class Branches extends BaseClass {
@@ -456,92 +455,7 @@ public String verifyBranchKgALC666(String branchId) throws InterruptedException 
 
 }
 
-public void splitBranchVerify(String pNum) throws InterruptedException {
 
-	clickBranchesTab();
-	Thread.sleep(5000);
-	searchSpecificBranch(pNum);
-	clickSpecificBranch();
-	wait.until(ExpectedConditions.elementToBeClickable(exchangeHistoryTab));
-	exchangeHistoryTab.click();
-
-	wait.until(ExpectedConditions.visibilityOf(transactions.get(0)));
-
-	Thread.sleep(3000);
-
-	Set<String> expectedTransactionsDetails = new HashSet<>(Arrays.asList(" Bought 75 KG from "+PB_Register_CollectionPoint.splitBranchMemberName1+" "," Bought 75 KG from "+PB_Register_CollectionPoint.splitMemberName2+" "," Sold 150 KG to "+Data.branch1_Name4358+" "));
-
-	Set<String> actualTransactionsDetails = new HashSet<>();
-
-	Thread.sleep(2000);
-
-	for(WebElement ele : transactionsDetails){
-
-		actualTransactionsDetails.add(ele.getText());
-
-	}
-	Thread.sleep(2000);
-
-	System.out.println(actualTransactionsDetails);
-
-	System.out.println(" Bought 75 KG from "+PB_Register_CollectionPoint.splitBranchMemberName1+" "+" Bought 75 KG from "+PB_Register_CollectionPoint.splitMemberName2+" "+" Sold 150 KG to "+Data.branch1_Name4358+" ");
-
-
-	Set<String> actualProcessed = preprocessSet(actualTransactionsDetails);
-	Set<String> expectedProcessed = preprocessSet(expectedTransactionsDetails);
-
-	// Asserting the equality of the processed sets
-	assert actualProcessed.equals(expectedProcessed);
-
-	//assert actualTransactionsDetails.equals(expectedTransactionsDetails);
-
-	Set<String> expectedHdpeKg = new HashSet<>(Arrays.asList("25 KG","25 KG","50 KG"));
-	Set<String> actualHdpeKg = new HashSet<>();
-
-	Set<String> expectedPetKg = new HashSet<>(Arrays.asList("50 KG","50 KG","100 KG"));
-	Set<String> actualPetKg = new HashSet<>();
-
-	Set<String> expectedBonusType = new HashSet<>(Arrays.asList("Member Bonus","Member Bonus","Branch Bonus"));
-	Set<String> actualBonusType = new HashSet<>();
-
-	Set<String> expectedBonus = new HashSet<>(Arrays.asList("0","0","0"));
-	Set<String> actualBonus = new HashSet<>();
-
-	Set<String> expectedTotalKG = new HashSet<>(Arrays.asList("75 KG","75 KG","150 KG"));
-	Set<String> actualTotalKG = new HashSet<>();
-
-
-	for(WebElement tr :transactions){
-
-		tr.click();
-
-		Thread.sleep(3000);
-
-		actualHdpeKg.add(hdpeKg.getText());
-		actualPetKg.add(petKg.getText());
-		actualBonusType.add(bonusType.getText());
-		actualBonus.add(associatedBonus.getText());
-		actualTotalKG.add(totalKg.getText());
-
-		Thread.sleep(1000);
-		Actions action =new Actions(alcDriver);
-		action.scrollToElement(lastItemOnPage).build().perform();
-		TakesScreenshot ts = (TakesScreenshot) alcDriver;
-		byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-		Allure.addAttachment("Transactions of Branch Exchange History ", new ByteArrayInputStream(screenshot));
-
-		Thread.sleep(3000);
-
-		tr.click();
-
-	}
-	Assert.assertEquals(actualHdpeKg,expectedHdpeKg);
-	Assert.assertEquals(actualPetKg,expectedPetKg);
-	Assert.assertEquals(actualBonusType,expectedBonusType);
-	Assert.assertEquals(actualBonus,expectedBonus);
-	Assert.assertEquals(actualTotalKG,expectedTotalKG);
-
-}
 public String VerifyMARYGRACEPartnerBranchAlc666() throws InterruptedException {
 
 	Actions action = new Actions(alcDriver);
@@ -1022,7 +936,7 @@ public void transactionApproveExcHisB1(String pNum) throws InterruptedException 
 	expectedBr1TagsDetails.addAll(Arrays.asList("19","0","1","0"));
 	Assert.assertEquals(actualBr1TagsDetails, expectedBr1TagsDetails);
 	Thread.sleep(2000);
-	TakesScreenshot ts = (TakesScreenshot) pbDriver;
+	TakesScreenshot ts = (TakesScreenshot) alcDriver;
     byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
     Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshot));
     Thread.sleep(4000);
@@ -1096,7 +1010,7 @@ public void transactionApproveExcHisB2(String pNum) throws InterruptedException 
 	expectedBr2TagsDetails.addAll(Arrays.asList("0","0","0","0"));
 	Assert.assertEquals(actualBr2TagsDetails, expectedBr2TagsDetails);
 	Thread.sleep(2000);
-	TakesScreenshot ts = (TakesScreenshot) pbDriver;
+	TakesScreenshot ts = (TakesScreenshot) alcDriver;
     byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
     Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshot));
     Thread.sleep(4000);
@@ -1172,7 +1086,7 @@ public void transactionApproveExcHisB3(String pNum) throws InterruptedException 
 	expectedBr3TagsDetails.addAll(Arrays.asList("0","0","0","0"));
 	Assert.assertEquals(actualBr3TagsDetails, expectedBr3TagsDetails);
 	Thread.sleep(2000);
-	TakesScreenshot ts = (TakesScreenshot) pbDriver;
+	TakesScreenshot ts = (TakesScreenshot) alcDriver;
     byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
     Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshot));
     Thread.sleep(4000);
@@ -1696,20 +1610,7 @@ public void ensureBranchIsPresentWithTokens(String phone, String aname, String p
 		submit.click();
 		close.click();
 }
-public void compareAlchemyAndAppTokens(String phone) throws InterruptedException {
-	branches_TAB.click();
-	 wait300.until(ExpectedConditions.visibilityOf(perpage));
-	 phoneSearchBox.clear();
-	 phoneSearchBox.sendKeys(phone);
-	 wait300.until(ExpectedConditions.visibilityOf(pageLoader));
-	 wait300.until(ExpectedConditions.visibilityOf(perpage));
-	 wait300.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(searchresult)));
-	 firstcell.click();
-	 wait300.until(ExpectedConditions.visibilityOf(tokensinwallet));
-	 String tokensinAlchemy = tokensinwallet.getText().replace(",", "");
-	 assertTrue(tokensinAlchemy.equals(PB_Member_Profile.tokensinend));
-	 takescreenshotof(tokensinwallet,"Tokens in account wallet after cashout on Alchemy.");
-}
+
 
 public void sendtokenstobranch(String phone) {
 	branches_TAB.click();

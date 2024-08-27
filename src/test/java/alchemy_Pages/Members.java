@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import Utilities.BaseClass;
 import Utilities.Data;
 import io.qameta.allure.Allure;
-import plastic_Bank_Pages.PB_Member_Profile;
+
 
 public class Members extends BaseClass{
 	
@@ -565,20 +565,7 @@ public void refresh() {
 	 }
 	 
 	 
-	public void compareAlchemyAndAppTokens(String phone) throws InterruptedException {
-		members_TAB.click();
-		wait300.until(ExpectedConditions.visibilityOf(perpage));
-		 phoneSearchBox.clear();
-		 phoneSearchBox.sendKeys(phone);
-		 wait300.until(ExpectedConditions.visibilityOf(pageLoader));
-		 wait300.until(ExpectedConditions.visibilityOf(perpage));
-		 wait300.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(searchresult)));
-		 firstcell.click();
-		 wait300.until(ExpectedConditions.visibilityOf(tokensinwallet));
-		 String tokensinAlchemy = tokensinwallet.getText().replace(",", "");
-		 assertTrue(tokensinAlchemy.equals(PB_Member_Profile.tokensinend));
-		 takescreenshotof(tokensinwallet,"Tokens in account wallet after cashout on Alchemy.");
-	 }
+	
 	public void createRandomMemberWithTokens(WebElement el, String pcode, String tokens) {
 		members_TAB.click();
 		 wait300.until(ExpectedConditions.visibilityOf(perpage));

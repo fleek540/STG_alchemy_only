@@ -936,7 +936,7 @@ public void step25() throws InterruptedException {
 	benefitnamesearchbox.sendKeys(seconfbenefit);
 	waitforloader();
 	WebElement el = alcDriver.findElement(By.xpath(dynaresult.replace("param", seconfbenefit)));
-	WebDriverWait wait = new WebDriverWait(pbDriver,Duration.ofSeconds(300));
+	WebDriverWait wait = new WebDriverWait(alcDriver,Duration.ofSeconds(300));
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(el)));
 	el.click();
 	benefitcost.isDisplayed();

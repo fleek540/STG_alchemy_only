@@ -131,8 +131,7 @@ public static boolean gojekyn;
 	public String alc_B3_P_ExngHisKgVerify[] = { "1 KG", "1 KG", "2 KG" };
 
 	public static RemoteWebDriver alcDriver;
-	public static AndroidDriver pbDriver;
-
+	
 	
 	  protected static String randomPhoneNumber;
 	  protected static String randomBusinessName;
@@ -200,31 +199,7 @@ public static boolean gojekyn;
 		  
 		 
 		
-		  DesiredCapabilities capabilities = new DesiredCapabilities();
-		  HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-		  ltOptions.put("w3c", true);
-		  ltOptions.put("platformName", "android");
-		  ltOptions.put("deviceName", "Pixel 4");
-		  ltOptions.put("platformVersion", "12");
-		  ltOptions.put("build", "PBAPP tests QA 24062024"+" "+formattedDate);
-		  ltOptions.put("idleTimeout","1700");
-		  ltOptions.put("name", testName);
-		  ltOptions.put("isRealMobile", true);
-		  ltOptions.put("app", "lt://APP10160361821724247841523904");
-		  ltOptions.put("deviceOrientation", "PORTRAIT");
-		  
-		  capabilities.setCapability("lt:options", ltOptions);
-		  		
-          pbDriver = new AndroidDriver(new URL("https://" +username + ":" + accesskey + "@mobile-hub.lambdatest.com/wd/hub"), capabilities);
-	  
-			  
-			 
-			  pbDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); wait10 =
-			  new WebDriverWait(pbDriver,Duration.ofSeconds(10)); wait3 = new
-			  WebDriverWait(pbDriver,Duration.ofSeconds(3)); wait30 = new
-			  WebDriverWait(pbDriver,Duration.ofSeconds(30)); wait200 = new
-			  WebDriverWait(pbDriver,Duration.ofSeconds(200));
-			 
+		
 		 
 		 
 		 
@@ -243,74 +218,7 @@ public static boolean gojekyn;
 
 	
 	
-	  public void tap(int x, int y) throws InterruptedException {
-	  Thread.sleep(4000); PointerInput fingert = new
-	  PointerInput(PointerInput.Kind.TOUCH, "fingert"); Sequence scrollt = new
-	  Sequence(fingert, 1);
-	  scrollt.addAction(fingert.createPointerMove(Duration.ofMillis(0),
-	  PointerInput.Origin.viewport(), x, y));
-	  scrollt.addAction(fingert.createPointerDown(0));
-	  scrollt.addAction(fingert.createPointerMove(Duration.ofMillis(100),
-	  PointerInput.Origin.viewport(), x, y));
-	  scrollt.addAction(fingert.createPointerUp(0));
-	  pbDriver.perform(Arrays.asList(scrollt)); 
-	  }
-	  
-	  
-	  public void scroll(int x, int y,
-	  int p, int q) throws InterruptedException { Thread.sleep(4000); PointerInput
-	  fingert = new PointerInput(PointerInput.Kind.TOUCH, "fingert"); Sequence
-	  scrollt = new Sequence(fingert, 1);
-	  scrollt.addAction(fingert.createPointerMove(Duration.ofMillis(0),
-	  PointerInput.Origin.viewport(), x, y));
-	  scrollt.addAction(fingert.createPointerDown(0));
-	  scrollt.addAction(fingert.createPointerMove(Duration.ofMillis(2000),
-	  PointerInput.Origin.viewport(), p, q));
-	  scrollt.addAction(fingert.createPointerUp(0));
-	  pbDriver.perform(Arrays.asList(scrollt)); 
-	  }
-	  public void scrollfast(int x, int y,
-			  int p, int q) throws InterruptedException { Thread.sleep(4000); PointerInput
-			  fingert = new PointerInput(PointerInput.Kind.TOUCH, "fingert"); Sequence
-			  scrollt = new Sequence(fingert, 1);
-			  scrollt.addAction(fingert.createPointerMove(Duration.ofMillis(0),
-			  PointerInput.Origin.viewport(), x, y));
-			  scrollt.addAction(fingert.createPointerDown(0));
-			  scrollt.addAction(fingert.createPointerMove(Duration.ofMillis(20),
-			  PointerInput.Origin.viewport(), p, q));
-			  scrollt.addAction(fingert.createPointerUp(0));
-			  pbDriver.perform(Arrays.asList(scrollt)); 
-			  }
-	  public void ocr_test_shot(AndroidDriver driver) throws IOException{
-			BaseClass.pbDriver=driver;
-			File scrFile2 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			Date d=new Date();
-			String scrFile2name=d.toString().replace(":","_").replace(" ", "_");
-
-			FileUtils.copyFile(scrFile2, new File(".\\"+scrFile2name+".png"));
-			File destFile=new File(".\\"+scrFile2name+".png");
-
-			String fileName=destFile.getName();
-			BytePointer outText;
-	        TessBaseAPI api = new TessBaseAPI();
-	     // Initialize tesseract-ocr with English, without specifying tessdata path
-	        if (api.Init(".", "ENG") != 0) {
-	            System.err.println("Could not initialize tesseract.");
-	            System.exit(1);
-	        }
-			// Open input image with leptonica library
-	        PIX image = pixRead(fileName);
-	        api.SetImage(image);
-	        // Get OCR result
-	        outText = api.GetUTF8Text();
-	        this.string = outText.getString();
-	        System.out.println("OCR output:\n" + string);
-	     // Destroy used object and release memory
-	        api.End();
-	        outText.deallocate();
-	        pixDestroy(image);  
-	        destFile.delete();
-		}
+	 
 	 
 	public void takescreenshotof(WebElement element, String Scrnsht_message) throws InterruptedException {
 		Actions action = new Actions(alcDriver);
@@ -321,11 +229,6 @@ public static boolean gojekyn;
 			Thread.sleep(2000);
 	}
 	
-	  public void takescreenshotofandroid(String
-	  Scrnsht_message) throws InterruptedException { 
-	  TakesScreenshot ts1 = (TakesScreenshot) pbDriver; byte[] screenshot1 =
-	  ts1.getScreenshotAs(OutputType.BYTES); Allure.addAttachment(Scrnsht_message,
-	  new ByteArrayInputStream(screenshot1)); Thread.sleep(2000); }
 	 
 	
 	  @BeforeSuite 
@@ -425,17 +328,7 @@ public static boolean gojekyn;
 		  return bonusname; 
 		  }
 
-	@AfterMethod
-	public void afterMethod(ITestResult result) {
-		if (result.getStatus() == ITestResult.FAILURE) {
-			TakesScreenshot ts = (TakesScreenshot) alcDriver;
-			byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-			Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshot));
-			TakesScreenshot pb_ts = (TakesScreenshot)pbDriver;
-			byte[] screenshot_pb = pb_ts.getScreenshotAs(OutputType.BYTES);
-			Allure.addAttachment("Screenshot_pb", new ByteArrayInputStream(screenshot_pb));
-		}
-	}
+	
 	@AfterClass
 	public void teardownalchemy() {
 
@@ -448,18 +341,7 @@ public static boolean gojekyn;
 		}
 
 	}
-	@AfterClass
-	public void teardownapp() {
-
-		try {
-			pbDriver.quit();
-			
-		}
-		catch (NoSuchSessionException e){
-			System.out.print("No such session exception call"+e.getMessage());
-		}
-
-	}
+	
 	public static int stringToInt(String input){
 
 		// Define a regular expression pattern to match the number
