@@ -1,9 +1,9 @@
 package impactHub_Pages;
 
 import Utilities.BaseClass;
-import Utilities.verifyCountOfElement;
+
 import alchemy_Pages.AlchemyLoginPage;
-import cms_Pages.cms_Dashboard;
+
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -788,57 +788,7 @@ public class impactHubHomePage extends BaseClass {
 
     }
 
-    public void verifyUrlMKC(String expectedUrl) throws InterruptedException, AWTException {
-
-        WebDriverWait wait = new WebDriverWait(alcDriver, Duration.ofSeconds(60));
-        String initialTab = alcDriver.getWindowHandle();
-        Thread.sleep(2000);
-        WebElement mkcContent = alcDriver.findElement(By.xpath("//p[text()=' " + cms_Dashboard.titleMKC + " ']"));
-        JavascriptExecutor js = (JavascriptExecutor) alcDriver;
-        js.executeScript("arguments[0].click();", mkcContent);
-
-
-        // mkcContent.click();
-        // """"
-        //p[text()=' Fleek Marketing Calender : KlFou ']
-
-        Thread.sleep(4000);
-
-        Set<String> handles = alcDriver.getWindowHandles();
-
-        for (String handle : handles) {
-            if (!handle.equals(initialTab)) {
-                alcDriver.switchTo().window(handle);
-                actualUrl = alcDriver.getCurrentUrl();
-                break;
-            }
-        }
-
-        if (alcDriver.getCurrentUrl().equals(expectedUrl)) {
-
-            System.out.println("URL matched!");
-            System.out.println("expectedUrl:" + expectedUrl);
-            System.out.println("actualUrl:" + actualUrl);
-            Thread.sleep(2000);
-            TakesScreenshot ts1 = (TakesScreenshot) alcDriver;
-            byte[] screenshot1 = ts1.getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment("Verify Link is working ", new ByteArrayInputStream(screenshot1));
-            Thread.sleep(2000);
-
-            Assert.assertEquals(expectedUrl, actualUrl);
-            // Close the new tab
-            alcDriver.close();
-        } else {
-            System.out.println("URL didn't match!");
-            // Close the new tab
-            alcDriver.close();
-        }
-
-        // Switch back to the initial tab
-        alcDriver.switchTo().window(initialTab);
-
-    }
-
+   
     public void verifyLocation() throws InterruptedException {
 
     	Actions action = new Actions(alcDriver);
@@ -1136,96 +1086,7 @@ Actions action = new Actions(alcDriver);
         }
 
     }
-    public void socialBenefitsValueVerify() throws InterruptedException {
-
-        WebDriverWait wait = new WebDriverWait(alcDriver, Duration.ofSeconds(120));
-        Actions action = new Actions(alcDriver);
-        TakesScreenshot ts1 = (TakesScreenshot) alcDriver;
-
-        int totalSocialBenefits;
-        List<String> socialBenefitsString=new ArrayList<>();
-        List<String> socialBenefitsString2=new ArrayList<>();
-
-        Thread.sleep(2000);
-
-        wait.until(ExpectedConditions.elementToBeClickable(auditTrailTab));
-        auditTrailTab.click();
-
-        wait.until(ExpectedConditions.invisibilityOf(loader));
-        Thread.sleep(2000);
-
-        action.scrollToElement(socialBenefitChartValues.get(0)).build().perform();
-
-        byte[] screenshot2 = ts1.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Social Benefits dashboard ", new ByteArrayInputStream(screenshot2));
-        Thread.sleep(3000);
-
-
-        for(WebElement ele:socialBenefitChartValues){
-
-            socialBenefitsString.add(ele.getText());
-            Thread.sleep(2000);
-
-        }
-        System.out.println(socialBenefitsString);
-
-        int totalSum = 0;
-
-        for (String socBenSt : socialBenefitsString) {
-
-            int number  = Integer.parseInt(socBenSt.replace(",", ""));
-            totalSum += number;
-
-        }
-
-        int totalSocialBenefitsCalculated=totalSum;
-
-        System.out.println(totalSocialBenefitsCalculated);
-
-        action.scrollToElement(socialBenefitsTotalTop).build().perform();
-
-        byte[] screenshot3 = ts1.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Social Benefits Total at Top ", new ByteArrayInputStream(screenshot3));
-        Thread.sleep(3000);
-
-        String totalSocialBenefitsSt=socialBenefitsTotalTop.getText();
-        String totalSocBenSt=totalSocialBenefitsSt.replace(",","").replace(" ","");
-        totalSocialBenefits=Integer.parseInt(totalSocBenSt);
-
-        Assert.assertEquals(totalSocialBenefitsCalculated,totalSocialBenefits);
-
-        System.out.println(totalSocialBenefits);
-
-
-
-        for(WebElement ele1:socialBenefitsInAuditTrailSummaryText){
-
-            this.socialBenefitsInAuditTrailSummary.add(ele1.getText());
-            Thread.sleep(1000);
-        }
-        System.out.println("Data : "+socialBenefitsInAuditTrailSummary);
-
-        Thread.sleep(4000);
-
-        socialBenefitTab.click();
-        Thread.sleep(14000);
-        wait.until(ExpectedConditions.elementToBeClickable(exportDataButton));
-        exportDataButton.click();
-
-        Thread.sleep(2000);
-        byte[] screenshot33 = ts1.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Export Data download in Social Benefit ", new ByteArrayInputStream(screenshot33));
-        Thread.sleep(3000);
-
-        verifyCountOfElement v = new verifyCountOfElement(alcDriver);
-        v.run();
-
-        Thread.sleep(3000);
-
-        Assert.assertEquals(totalSocialBenefits,verifyCountOfElement.totalBenefits-1);
-
-
-    }
+  
     public void socialBenefitsValueVerify2() throws InterruptedException {
 
         WebDriverWait wait = new WebDriverWait(alcDriver, Duration.ofSeconds(120));
