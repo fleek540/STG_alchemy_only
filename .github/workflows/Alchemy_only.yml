@@ -1,4 +1,4 @@
-name: STG Env Run alchemy only test cases ALC-4363, ALC-4362, ALC-666, ALC-4356, ALC-4355, ALC-4353
+name: STG Env Run alchemy only test cases ALC-4363, ALC-4362, ALC-666, ALC-4356, ALC-4355, ALC-4353, ALC-6692, ALC_6693, ALC-5649, ALC-5650, ALC-5651, ALC-5661
 
 on:
   workflow_dispatch: # This allows the workflow to be triggered manually
