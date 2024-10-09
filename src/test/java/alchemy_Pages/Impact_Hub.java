@@ -521,10 +521,12 @@ public void uploadResource2() throws InterruptedException, AWTException {
 	resourcename.sendKeys("fleek-resource-"+RandomStringUtils.randomAlphabetic(5));
 	resourcetype.click();
 	resourcetypefileoption.click();
-	resourcefileupload2.sendKeys("C:\\Users\\Fleek\\Downloads\\PlasticBank\\com.plasticbank.actual\\uploadimage.png");
+	//resourcefileupload2.sendKeys("C:\\Users\\Fleek\\Downloads\\PlasticBank\\com.plasticbank.actual\\uploadimage.png");
+	resourcefileupload2.sendKeys("uploadimage.png");
 	
 	
-	 thumbnail2.sendKeys("C:\\Users\\Fleek\\Downloads\\PlasticBank\\com.plasticbank.actual\\uploadimage.png");
+	// thumbnail2.sendKeys("C:\\Users\\Fleek\\Downloads\\PlasticBank\\com.plasticbank.actual\\uploadimage.png");
+	 thumbnail2.sendKeys("uploadimage.png");
 	 
 	crop.click();
 	update.click();
