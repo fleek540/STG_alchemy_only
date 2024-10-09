@@ -247,7 +247,7 @@ WebElement materialcardimagetext;
 boolean imageispresent=false;
 
 public void openAPIsandResources2() throws InterruptedException {
-	 alcDriver.get("https://qa-impact.cognitionfoundry.io/unitedbyblue");
+	 alcDriver.get("https://staging-impact.plasticbank.com/unitedbyblue");
 		AlchemyLoginPage alp = new AlchemyLoginPage(alcDriver);
 		ihaddress.sendKeys("ashish.rawat@fleekitsolutions.com");
 		ihpw.sendKeys("123456a");
@@ -273,7 +273,7 @@ public void openAPIsandResources2() throws InterruptedException {
 			confirm.click();
 			update.click();
 			Thread.sleep(4000);
-			alcDriver.get("https://qa-impact.cognitionfoundry.io/unitedbyblue");
+			alcDriver.get("https://staging-impact.plasticbank.com/unitedbyblue");
 			ihaddress.sendKeys("ashish.rawat@fleekitsolutions.com");
 			ihpw.sendKeys("123456a");
 			ihlogin.click();
@@ -310,7 +310,7 @@ public void waitforloader() {
 
 @SuppressWarnings("deprecation")
 public void verifyCertsAndImages() throws InterruptedException {
-	alcDriver.get("https://qa-impact.cognitionfoundry.io/unitedbyblue");
+	alcDriver.get("https://staging-impact.plasticbank.com/unitedbyblue");
 	try {
 		alcDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS); 
 		AlchemyLoginPage alp = new AlchemyLoginPage(alcDriver);
@@ -404,7 +404,7 @@ public void preconditions() throws InterruptedException {
 }
 @SuppressWarnings("deprecation")
 public void next() throws InterruptedException {
-	alcDriver.get("https://qa-impact.cognitionfoundry.io/unitedbyblue");
+	alcDriver.get("https://staging-impact.plasticbank.com/unitedbyblue");
 		
 		ihaddress.sendKeys("ashish.rawat@fleekitsolutions.com");
 		ihpw.sendKeys("123456a");
@@ -591,7 +591,7 @@ public void verifyDownload() throws InterruptedException {
 
 @SuppressWarnings("deprecation")
 public void verifyesghomeischecked() throws InterruptedException {
-	alcDriver.get("https://qa-impact.cognitionfoundry.io/unitedbyblue/");
+	alcDriver.get("https://staging-admin.plasticbank.com/unitedbyblue/");
 	try {
 		alcDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
 		AlchemyLoginPage alp = new AlchemyLoginPage(alcDriver);
@@ -608,7 +608,7 @@ public void verifyesghomeischecked() throws InterruptedException {
 	}
 	catch(Exception e) {
 		alcDriver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		alcDriver.get("https://qa-admin.cognitionfoundry.io//#/login");
+		alcDriver.get("https://staging-admin.plasticbank.com/#/login");
 		AlchemyLoginPage loginAlchmey=new AlchemyLoginPage(alcDriver);
 		loginAlchmey.alc_adminlogin("+17783844311","778778");
 		clientdashboardtab.click();
@@ -641,7 +641,7 @@ public void verifyesghomeischecked() throws InterruptedException {
 
 @SuppressWarnings("deprecation")
 public void downloadMemberStoriesAsset() throws InterruptedException {
-	alcDriver.get("https://qa-impact.cognitionfoundry.io/unitedbyblue");
+	alcDriver.get("https://staging-impact.plasticbank.com/unitedbyblue");
 	try {
 		alcDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS); 
 		AlchemyLoginPage alp = new AlchemyLoginPage(alcDriver);
@@ -663,7 +663,7 @@ public void downloadMemberStoriesAsset() throws InterruptedException {
 	
 	download.click();
 
-	Thread.sleep(240000);
+	Thread.sleep(600000);
     Assert.assertEquals(
             ((JavascriptExecutor) alcDriver).executeScript("lambda-file-exists=brandfolder.zip"),
             true); 

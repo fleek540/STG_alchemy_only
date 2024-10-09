@@ -14,5 +14,6 @@ public void verify() throws InterruptedException {
 		Impact_Hub ih = new Impact_Hub(alcDriver);
 		ih.verifyesghomeischecked();
 		ih.downloadMemberStoriesAsset();
+		teststatus=true;
 	}
 }

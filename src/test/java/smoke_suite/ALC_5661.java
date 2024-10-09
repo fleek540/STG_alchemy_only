@@ -16,6 +16,7 @@ public class ALC_5661 extends BaseClass{
 		loginAlchmey.alc_adminlogin("+17783844311","778778");
 		Impact_Hub ih=new Impact_Hub(alcDriver);
 		ih.uploadResource2();
+		teststatus=true;
 	}
 	
 	@Test(priority=1,description="Verify when resource  added in Client dashboard is added to the APIs and Resource page under Resource section in impact hub.")
@@ -23,12 +24,14 @@ public class ALC_5661 extends BaseClass{
 	public void openImpactHub() throws InterruptedException {
 		Impact_Hub ih=new Impact_Hub(alcDriver);
 		ih.openAPIsandResources2();
+		teststatus=true;
 	}
 	@Test(priority=2,description="Verify that when a user clicks on the assets within the Resources section, the system should download the file.")
 	@Description("Verify that when a user clicks on the assets within the Resources section, the system should download the file.")
 	public void downloadFile() throws InterruptedException {
 		Impact_Hub ih=new Impact_Hub(alcDriver);
 		ih.verifyDownload();
+		teststatus=true;
 	}
 
 }

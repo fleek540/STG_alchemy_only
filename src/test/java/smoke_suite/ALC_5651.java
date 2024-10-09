@@ -12,5 +12,6 @@ public class ALC_5651 extends BaseClass{
 public void verify_User_can_see_certificates() throws InterruptedException {
 	Impact_Hub ih=new Impact_Hub(alcDriver);
 	ih.verifyCertsAndImages();
+	teststatus=true;
 }
 }

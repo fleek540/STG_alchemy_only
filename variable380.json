@@ -1,0 +1,79 @@
+{
+  "id": "014aa6dd-0dc2-42cd-8d41-47efb2be32b9",
+  "values": [
+    {
+      "type": "any",
+      "value": "FleekMHMxkd",
+      "key": "m1randomUsername"
+    },
+    {
+      "type": "any",
+      "value": "+633321011728",
+      "key": "m1randomNumber"
+    },
+    {
+      "type": "any",
+      "value": "33AEB031-E2B5-F9AD-A3B4-C7424214FB5A",
+      "key": "m1deviceID"
+    },
+    {
+      "type": "any",
+      "value": "48ddc4f3-e9ba-4088-993e-2e7b0d25c027",
+      "key": "m1id"
+    },
+    {
+      "type": "any",
+      "value": "48ddc4f3-e9ba-4088-993e-2e7b0d25c027",
+      "key": "m1entityId"
+    },
+    {
+      "type": "any",
+      "value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTg3NzYxNzIsInN1YiI6IjRkYWQyZGVlLTlhZjUtNGJmZS1hNjQ0LTljMTg5OWY1MTVjMCJ9.AJpKS4SKIees9EMF54V8bUHRJkn_BF6_v4uOPKvCu9N5NkXovDCZ5fGe9KSSroAd3AQ9GbVTrmHP6ne8Bd8POg",
+      "key": "m1accessToken"
+    },
+    {
+      "type": "any",
+      "value": "Fleek9tMAVW",
+      "key": "m2randomUsername"
+    },
+    {
+      "type": "any",
+      "value": "+633967465912",
+      "key": "m2randomNumber"
+    },
+    {
+      "type": "any",
+      "value": "B29652BC-7141-A3FB-4D95-DDCC4A377087",
+      "key": "m2deviceID"
+    },
+    {
+      "type": "any",
+      "value": "4dad2dee-9af5-4bfe-a644-9c1899f515c0",
+      "key": "m2id"
+    },
+    {
+      "type": "any",
+      "value": "4dad2dee-9af5-4bfe-a644-9c1899f515c0",
+      "key": "m2entityId"
+    },
+    {
+      "type": "any",
+      "value": "9168c484ee03b606f4c54539381aff46",
+      "key": "sessionCode"
+    },
+    {
+      "type": "any",
+      "value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjcyNzc5NzMsInN1YiI6IjY4ZTJiNDMxLTMxMTYtNDQyZC1iNTVkLWRiZTUyNDJiYjliMiJ9.NndnUNKepuG2lG6DFCZOGcGKGMYRYDMbnLTG-wuUG84PgJ_euRrc8OcBWsPgIioS3T20wFym825BPJRvdRFbGQ",
+      "key": "alchemytoken"
+    },
+    {
+      "type": "any",
+      "value": "ahgCU9ROubpZYRvlAh3NmESEvEc=",
+      "key": "sessionCode1"
+    }
+  ],
+  "name": "environment",
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2024-09-25T14:56:14.915Z",
+  "_postman_exported_using": "Newman/5.3.2"
+}

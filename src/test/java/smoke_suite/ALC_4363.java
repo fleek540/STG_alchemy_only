@@ -17,7 +17,7 @@ public class ALC_4363 extends BaseClass{
 	@Test(priority =0,enabled=true, description = "Approve_transactions_branch_exchange_history_Verify_In_BonusApproval")
 	@Description("Approve_transactions_branch_exchange_history_Verify_In_BonusApproval")	
 	public void  Approve_transactions_branch_exchange_history_Verify_In_BonusApproval() throws IOException, InterruptedException {
-		try {
+	
 		Data pn=new Data();
 		Branches br1 = new Branches(alcDriver);
 		Bonus bn1 =new Bonus(alcDriver);
@@ -30,11 +30,7 @@ public class ALC_4363 extends BaseClass{
 		
 		bn1.bonusApproval(Data.bonusName);
 		br1.verifyBonusInBranchExcHistory(Data.branch1_Number);
-		((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "passed");
-		
-	}catch(Exception e) {
-		((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "failed");
-	}
+		teststatus=true;
 
 }
 }

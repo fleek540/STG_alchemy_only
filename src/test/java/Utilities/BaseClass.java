@@ -22,6 +22,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.javacpp.lept.PIX;
 import org.bytedeco.javacpp.tesseract.TessBaseAPI;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -51,7 +52,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 @SuppressWarnings("deprecation")
 public class BaseClass {
-		
+	
+	public static boolean teststatus=false;
 	public String string;
 	public static String benefitordername;
 	public static String androidbenefitname;
@@ -159,8 +161,8 @@ public static boolean gojekyn;
     // Format the date as a string
     public static String formattedDate = now.format(formatter);
 
-	public static String temp= "qa-admin.cognitionfoundry.io";
-	public static String actual = "qa-admin.cognitionfoundry.io";
+	public static String temp= "staging-admin.plasticbank.com";
+	public static String actual = "staging-admin.plasticbank.com";
 	 public String username = "ashish.rawatfleekitsolutions";
 	    public String accesskey = "MWAa6go8FynMFZt5GYZyeKtSycfc6I2YKQhFn1PH2h1Tw6Syo2";
 	    public static final String URL = "";
@@ -180,7 +182,7 @@ public static boolean gojekyn;
 		ltOptions1.put("username", "ashish.rawatfleekitsolutions");
 		ltOptions1.put("accessKey", "MWAa6go8FynMFZt5GYZyeKtSycfc6I2YKQhFn1PH2h1Tw6Syo2");
 		ltOptions1.put("project", "Plastic Bank");
-		ltOptions1.put("build", "Alchemy tests QA"+" "+formattedDate);
+		ltOptions1.put("build", "Alchemy tests STG Mainak"+" "+formattedDate);
 		ltOptions1.put("idleTimeout","1700");
 		ltOptions1.put("name", testName);
 		ltOptions1.put("selenium_version", "4.13.0");
@@ -195,7 +197,7 @@ public static boolean gojekyn;
 		  wait300 = new WebDriverWait(alcDriver,Duration.ofSeconds(300)); 
 		  wait2s = new WebDriverWait(alcDriver,Duration.ofSeconds(2)); 
 		  waitms = new WebDriverWait(alcDriver,Duration.ofMillis(100));
-		  alcDriver.get("https://qa-admin.cognitionfoundry.io/#/login");
+		  alcDriver.get("https://staging-admin.plasticbank.com/#/login");
 		  
 		 
 		
@@ -229,7 +231,19 @@ public static boolean gojekyn;
 			Thread.sleep(2000);
 	}
 	
-	 
+	@AfterMethod
+	 public void mark_test_status_alchemy_only() {
+		 if(teststatus==true) {
+		        
+		        ((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "passed");
+		        teststatus=false;
+		        
+		        }
+		        else{
+				
+				((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "failed");
+			}
+	 } 
 	
 	  @BeforeSuite 
 	  public void generateRandomNumber() { 

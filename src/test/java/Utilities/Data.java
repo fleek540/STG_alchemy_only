@@ -38,7 +38,10 @@ public class Data extends BaseClass{
 
 	public static ArrayList<String> values687_2 = new ArrayList<String>();
 	public static ArrayList<String> values687 = new ArrayList<String>();
-
+	public static ArrayList<String> values6692=new ArrayList<String>();
+	public static ArrayList<String> values6693=new ArrayList<String>();
+	public static ArrayList<String> values_6692=new ArrayList<String>();
+	public static ArrayList<String> values_6693=new ArrayList<String>();
 	public static ArrayList<String> values1134_2 = new ArrayList<String>();
 	public static ArrayList<String> values=new ArrayList<String>();
 	public static ArrayList<String> values1=new ArrayList<String>();
@@ -218,7 +221,68 @@ public class Data extends BaseClass{
 				public static String sporderId_3_6106;
 
 				public int count =0;
+				public static String member_Name6692;
+				public static String member_Number6692;
 
+				public static String branch1_Name6692;
+				public static String branch1_Number6692;
+
+				public static String branch2_Name6692;
+				public static String branch2_Number6692;
+
+				public static String branch3_Name6692;
+				public static String branch3_Number6692;
+
+				public static String processor_Name6692;
+				public static String processor_Number6692;
+				public static String bonusName6692;
+				public static String member_Name6693;
+				public static String member_Number6693;
+
+				public static String branch1_Name6693;
+				public static String branch1_Number6693;
+
+				public static String branch2_Name6693;
+				public static String branch2_Number6693;
+
+				public static String branch3_Name6693;
+				public static String branch3_Number6693;
+
+				public static String processor_Name6693;
+				public static String processor_Number6693;
+				public static String bonusName6693;
+				
+				public static String member_Name_6692;
+				public static String member_Number_6692;
+
+				public static String branch1_Name_6692;
+				public static String branch1_Number_6692;
+
+				public static String branch2_Name_6692;
+				public static String branch2_Number_6692;
+
+				public static String branch3_Name_6692;
+				public static String branch3_Number_6692;
+
+				public static String processor_Name_6692;
+				public static String processor_Number_6692;
+				public static String bonusName_6692;
+				
+				public static String member_Name_6693;
+				public static String member_Number_6693;
+
+				public static String branch1_Name_6693;
+				public static String branch1_Number_6693;
+
+				public static String branch2_Name_6693;
+				public static String branch2_Number_6693;
+
+				public static String branch3_Name_6693;
+				public static String branch3_Number_6693;
+
+				public static String processor_Name_6693;
+				public static String processor_Number_6693;
+				public static String bonusName_6693;
 	  
 	  
 	public void runNewman() throws IOException {
@@ -288,7 +352,271 @@ public class Data extends BaseClass{
 	    
 	}
 	
+	public void alc_6692_col_1() throws IOException {
+	    try {
+	        // Start the command prompt window
+	        ProcessBuilder builder = new ProcessBuilder("cmd.exe");
+	        builder.redirectErrorStream(true);
+	        Process process = builder.start();
+	        
+	        // Send commands to the window
+	        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+	        writer.write("newman run alc_6692_first.postman_collection.json --export-environment variable6692_col1.json\n");
+	        writer.flush();
+	        writer.close(); // Close the writer to signal the end of input
+	        
+	        // Read the output of the window
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            System.out.println(line);
+	        }
+	        
+	        // Wait for the process to complete
+	        int exitCode = process.waitFor();
+	        System.out.println("Process completed with exit code: " + exitCode);
+	        
+	    } catch (IOException | InterruptedException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    String jsonFilePath = ".\\variable6692_col1.json"; // Replace with the actual path
+	    ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // Read the JSON file
+            JsonNode rootNode = objectMapper.readTree(new File(jsonFilePath));
+
+            // Extract values of specific keys
+            JsonNode valuesNode = rootNode.get("values");
+            if (valuesNode != null && valuesNode.isArray()) {
+                for (JsonNode valueEntry : valuesNode) {
+                    String key = valueEntry.get("key").asText();
+                    String value = valueEntry.get("value").asText();
+
+                    if ("m1randomUsername".equals(key) || "m1randomNumber".equals(key) || "b1randomBranchName".equals(key) || "b1randomNumber".equals(key) || "b2randomBranchName".equals(key) || "b2randomNumber".equals(key) || "b3randomBranchName".equals(key) || "b3randomNumber".equals(key) || "p1randomProcessorName".equals(key) || "p1randomNumber".equals(key) || "bonusOrderName".equals(key)) {
+                        System.out.println(key + ": " + value);
+                        values6692.add(value);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	    
+          member_Name6692 = values6692.get(0); 
+		  member_Number6692=values6692.get(1);
+		  branch1_Number6692 =values6692.get(2);
+		  branch1_Name6692 = values6692.get(3); 
+		  branch2_Number6692 =values6692.get(4); 
+		  branch2_Name6692 = values6692.get(5);
+		 
+		  processor_Number6692 = values6692.get(6);
+		  processor_Name6692 = values6692.get(7); 
+		 
+		  bonusName6692 = values6692.get(8);
+	    
+	    
+	}
 	
+	
+	public void alc_6693_1() throws IOException {
+	    try {
+	        // Start the command prompt window
+	        ProcessBuilder builder = new ProcessBuilder("cmd.exe");
+	        builder.redirectErrorStream(true);
+	        Process process = builder.start();
+	        
+	        // Send commands to the window
+	        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+	        writer.write("newman run 6693qa1.postman_collection.json --export-environment variable6693_1.json\n");
+	        writer.flush();
+	        writer.close(); // Close the writer to signal the end of input
+	        
+	        // Read the output of the window
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            System.out.println(line);
+	        }
+	        
+	        // Wait for the process to complete
+	        int exitCode = process.waitFor();
+	        System.out.println("Process completed with exit code: " + exitCode);
+	        
+	    } catch (IOException | InterruptedException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    String jsonFilePath = ".\\variable6693_1.json"; // Replace with the actual path
+	    ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // Read the JSON file
+            JsonNode rootNode = objectMapper.readTree(new File(jsonFilePath));
+
+            // Extract values of specific keys
+            JsonNode valuesNode = rootNode.get("values");
+            if (valuesNode != null && valuesNode.isArray()) {
+                for (JsonNode valueEntry : valuesNode) {
+                    String key = valueEntry.get("key").asText();
+                    String value = valueEntry.get("value").asText();
+
+                    if ("m1randomUsername".equals(key) || "m1randomNumber".equals(key) || "b1randomBranchName".equals(key) || "b1randomNumber".equals(key) || "b2randomBranchName".equals(key) || "b2randomNumber".equals(key) || "b3randomBranchName".equals(key) || "b3randomNumber".equals(key) || "p1randomProcessorName".equals(key) || "p1randomNumber".equals(key) || "bonusOrderName".equals(key)) {
+                        System.out.println(key + ": " + value);
+                        values6693.add(value);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	    
+          member_Name6693 = values6693.get(0); 
+		  member_Number6693=values6693.get(1);
+		  branch1_Number6693 =values6693.get(2);
+		  branch1_Name6693 = values6693.get(3); 
+		  
+		 
+		  processor_Number6693 = values6693.get(4);
+		  processor_Name6693 = values6693.get(5); 
+		 
+		  bonusName6693 = values6693.get(6);
+	    
+	    
+	}
+	
+	public void alc_6693_2() throws IOException {
+	    try {
+	        // Start the command prompt window
+	        ProcessBuilder builder = new ProcessBuilder("cmd.exe");
+	        builder.redirectErrorStream(true);
+	        Process process = builder.start();
+	        
+	        // Send commands to the window
+	        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+	        writer.write("newman run 6693qa2.postman_collection.json --export-environment variable6693_2.json\n");
+	        writer.flush();
+	        writer.close(); // Close the writer to signal the end of input
+	        
+	        // Read the output of the window
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            System.out.println(line);
+	        }
+	        
+	        // Wait for the process to complete
+	        int exitCode = process.waitFor();
+	        System.out.println("Process completed with exit code: " + exitCode);
+	        
+	    } catch (IOException | InterruptedException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    String jsonFilePath = ".\\variable6693_2.json"; // Replace with the actual path
+	    ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // Read the JSON file
+            JsonNode rootNode = objectMapper.readTree(new File(jsonFilePath));
+
+            // Extract values of specific keys
+            JsonNode valuesNode = rootNode.get("values");
+            if (valuesNode != null && valuesNode.isArray()) {
+                for (JsonNode valueEntry : valuesNode) {
+                    String key = valueEntry.get("key").asText();
+                    String value = valueEntry.get("value").asText();
+
+                    if ("m1randomUsername".equals(key) || "m1randomNumber".equals(key) || "b1randomBranchName".equals(key) || "b1randomNumber".equals(key) || "b2randomBranchName".equals(key) || "b2randomNumber".equals(key) || "b3randomBranchName".equals(key) || "b3randomNumber".equals(key) || "p1randomProcessorName".equals(key) || "p1randomNumber".equals(key) || "bonusOrderName".equals(key)) {
+                        System.out.println(key + ": " + value);
+                        values_6693.add(value);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	    
+          member_Name_6693 = values_6693.get(0); 
+		  member_Number_6693=values_6693.get(1);
+		  branch1_Number_6693 =values_6693.get(2);
+		  branch1_Name_6693 = values_6693.get(3); 
+		  
+		 
+		  processor_Number_6693 = values_6693.get(4);
+		  processor_Name_6693 = values_6693.get(5); 
+		 
+		  bonusName_6693 = values_6693.get(6);
+	    
+	    
+	}
+	
+	public void alc_6692_col_2() throws IOException {
+	    try {
+	        // Start the command prompt window
+	        ProcessBuilder builder = new ProcessBuilder("cmd.exe");
+	        builder.redirectErrorStream(true);
+	        Process process = builder.start();
+	        
+	        // Send commands to the window
+	        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+	        writer.write("newman run alc_6692_second.postman_collection.json --export-environment variable6692_col2.json\n");
+	        writer.flush();
+	        writer.close(); // Close the writer to signal the end of input
+	        
+	        // Read the output of the window
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            System.out.println(line);
+	        }
+	        
+	        // Wait for the process to complete
+	        int exitCode = process.waitFor();
+	        System.out.println("Process completed with exit code: " + exitCode);
+	        
+	    } catch (IOException | InterruptedException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    String jsonFilePath = ".\\variable6692_col2.json"; // Replace with the actual path
+	    ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // Read the JSON file
+            JsonNode rootNode = objectMapper.readTree(new File(jsonFilePath));
+
+            // Extract values of specific keys
+            JsonNode valuesNode = rootNode.get("values");
+            if (valuesNode != null && valuesNode.isArray()) {
+                for (JsonNode valueEntry : valuesNode) {
+                    String key = valueEntry.get("key").asText();
+                    String value = valueEntry.get("value").asText();
+
+                    if ("m1randomUsername".equals(key) || "m1randomNumber".equals(key) || "b1randomBranchName".equals(key) || "b1randomNumber".equals(key) || "b2randomBranchName".equals(key) || "b2randomNumber".equals(key) || "b3randomBranchName".equals(key) || "b3randomNumber".equals(key) || "p1randomProcessorName".equals(key) || "p1randomNumber".equals(key) || "bonusOrderName".equals(key)) {
+                        System.out.println(key + ": " + value);
+                        values_6692.add(value);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	    
+          member_Name_6692 = values_6692.get(0); 
+		  member_Number_6692=values_6692.get(1);
+		  branch1_Name_6692 = values_6692.get(3); 
+		  branch1_Number_6692 =values_6692.get(2);
+		  branch2_Name_6692 = values_6692.get(5);
+		  branch2_Number_6692 =values_6692.get(4); 
+		 
+		  processor_Name_6692 = values_6692.get(7); 
+		  processor_Number_6692 = values_6692.get(6);
+		  bonusName_6692 = values_6692.get(8);
+	    
+	    
+	}
 	
 	public void runNewman_ALC687_4() throws IOException {
 

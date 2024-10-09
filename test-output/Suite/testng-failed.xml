@@ -3,82 +3,24 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="smoke_suite.ALC_4957">
+      <class name="smoke_suite.ALC_5649">
         <methods>
-          <include name="getmonthlyss"/>
+          <include name="verify"/>
           <include name="teardownalchemy"/>
-          <include name="afterMethod"/>
           <include name="generateRandomLastName"/>
+          <include name="generateBrandName"/>
           <include name="generateBenefitOrderName"/>
+          <include name="mark_test_status_alchemy_only"/>
           <include name="generateBranchName"/>
           <include name="generateRandomBranchMemberNumber"/>
           <include name="generateRandomNumber"/>
           <include name="generateBonusName"/>
           <include name="generateAndroidBenefitname"/>
-          <include name="getmonthlyss2"/>
-          <include name="teardownapp"/>
           <include name="generateBenefitName"/>
           <include name="setup"/>
           <include name="generateBranchMemberName"/>
         </methods>
-      </class> <!-- smoke_suite.ALC_4957 -->
-      <class name="smoke_suite.ALC_4358">
-        <methods>
-          <include name="teardownalchemy"/>
-          <include name="afterMethod"/>
-          <include name="generateRandomLastName"/>
-          <include name="generateBenefitOrderName"/>
-          <include name="generateBranchName"/>
-          <include name="generateRandomNumber"/>
-          <include name="generateRandomBranchMemberNumber"/>
-          <include name="generateBonusName"/>
-          <include name="generateAndroidBenefitname"/>
-          <include name="teardownapp"/>
-          <include name="generateBenefitName"/>
-          <include name="setup"/>
-          <include name="generateBranchMemberName"/>
-          <include name="verifyInAlchemy"/>
-        </methods>
-      </class> <!-- smoke_suite.ALC_4358 -->
-      <class name="smoke_suite.ALC_3710">
-        <methods>
-          <include name="teardownalchemy"/>
-          <include name="checktokens"/>
-          <include name="afterMethod"/>
-          <include name="generateRandomLastName"/>
-          <include name="generateBenefitOrderName"/>
-          <include name="generateBranchName"/>
-          <include name="generateRandomNumber"/>
-          <include name="generateRandomBranchMemberNumber"/>
-          <include name="generateBonusName"/>
-          <include name="generateAndroidBenefitname"/>
-          <include name="teardownapp"/>
-          <include name="generateBenefitName"/>
-          <include name="setup"/>
-          <include name="generateBranchMemberName"/>
-        </methods>
-      </class> <!-- smoke_suite.ALC_3710 -->
-      <class name="smoke_suite.ALC_4350">
-        <methods>
-          <include name="EditMemberDetails"/>
-          <include name="teardownalchemy"/>
-          <include name="suspendMemberALC"/>
-          <include name="afterMethod"/>
-          <include name="generateRandomLastName"/>
-          <include name="memberSuspendVerify"/>
-          <include name="generateBenefitOrderName"/>
-          <include name="generateBranchName"/>
-          <include name="generateRandomBranchMemberNumber"/>
-          <include name="generateRandomNumber"/>
-          <include name="generateBonusName"/>
-          <include name="generateAndroidBenefitname"/>
-          <include name="teardownapp"/>
-          <include name="generateBenefitName"/>
-          <include name="setup"/>
-          <include name="generateBranchMemberName"/>
-          <include name="VerifyMemberAlchmey"/>
-        </methods>
-      </class> <!-- smoke_suite.ALC_4350 -->
+      </class> <!-- smoke_suite.ALC_5649 -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

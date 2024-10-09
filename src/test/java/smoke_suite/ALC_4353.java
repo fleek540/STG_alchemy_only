@@ -14,7 +14,7 @@ public class ALC_4353 extends BaseClass {
     @Test(priority = 0, description = "Login on alchemy with admin user")
     @Description("Alchmey Login")
     public void loginAlchmey() throws InterruptedException {
-    	try {
+    
         System.out.println("Alchmey Login");
         AlchemyLoginPage loginAlchmey=new AlchemyLoginPage(alcDriver);
         loginAlchmey.alc_adminlogin("+17783844311","778778");
@@ -41,17 +41,13 @@ public class ALC_4353 extends BaseClass {
         o.enterAuthCode("778899");
         o.clickSubmitAuthCode();
         o.search_byName(bonusname);
-        ((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "passed");
-		
-	}catch(Exception e) {
-		((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "failed");
-	}
+        teststatus=true;
 
     }
     @Test(priority = 1, description = "Go to 'Brand' Section and Create a new brand by clicking on the '+' icon")
     @Description("Create a new brand")
     public void createNewBrand() throws InterruptedException {
-    	try {
+    	
         System.out.println("New brand create");
         Brands brands=new Brands(alcDriver);
         brands.clickBranchTab();
@@ -61,27 +57,19 @@ public class ALC_4353 extends BaseClass {
         brands.clickCreateBrandBtnAfterFillDetails();
         brands.search_byName(randomBrandName);
         Assert.assertEquals(brands.verifyCreatedBrand(), randomBrandName);
-        ((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "passed");
-		
-	}catch(Exception e) {
-		((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "failed");
-	}
+        teststatus=true;
     }
     @Test(priority = 2, description = "Bonus order should be updated with the new brand")
     @Description("Search for newly created brand and save")
     public void searchNewlyCreatedBrandInBonus() throws InterruptedException {
         System.out.println("Search an existing bonus order and click 'Edit settings'");
-        try {
+        
         Orders orders = new Orders(alcDriver);
         orders.searchBonus(bonusname);
         orders.clickSpecificOrdersBonus();
         orders.searchCreatedBrandInBonusAndSave(randomBrandName);
         orders.searchBonus(bonusname);
         Assert.assertEquals(orders.verifyChnagesInBounsForBrandName(), randomBrandName);
-        ((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "passed");
-		
-	}catch(Exception e) {
-		((JavascriptExecutor) alcDriver).executeScript("lambda-status=" + "failed");
-	}
+        teststatus=true;
     }
 }

@@ -217,7 +217,7 @@ public class Orders extends BaseClass{
     WebElement checkbox;
     @FindBy(xpath = "//span[text()='Pay Bonuses']")
     WebElement paybonuses;
-    @FindBy(xpath = "//button[text()='Confirm']")
+    @FindBy(xpath = "//button[contains(text(),'Confirm')and(contains(@type,'button'))]")
     WebElement confirm;
     @FindBy(xpath = "//div[@class='loader circle-loader']") 
     WebElement loader;
@@ -326,7 +326,7 @@ public class Orders extends BaseClass{
    public WebElement saveButton;
    @FindBy(xpath = "//div[text()='Plastik-PET-Clean-Blue / 8.00 kg']/parent::div/parent::div//input")
    WebElement checkBoxWithOutBonus;
-
+   @FindBy(xpath = "//button[text()='OK']") WebElement ok;
    @FindBy(xpath="//label[text()=' Select All ']")
    public WebElement selectAllCheckMark;
    @FindBy(xpath="//tbody/tr/td[5]/div[1]/div")
@@ -335,8 +335,76 @@ public class Orders extends BaseClass{
    @FindBy(xpath = "//div[contains(text(),'Total Weight: ')]")
    List<WebElement> totalWeight;
 
-    
-    
+   @FindBy(xpath = "//div[@class='card-header']/div/button") 
+   WebElement pccardheaderbutton;
+   @FindBy(xpath = "//div[text()=' DELIVERED TO PROCESSOR ']") 
+   public WebElement deliveredtoprocessor;
+   @FindBy(xpath = "//div[contains(text(),'HDPE')]/following-sibling::div[text()=' DELIVERED TO PROCESSOR ']") 
+   public WebElement hdpedeliveredtoprocessor;
+   @FindBy(xpath = "//div[contains(text(),'LDPE')]/following-sibling::div[text()=' DELIVERED TO PROCESSOR ']") 
+   public WebElement ldpedeliveredtoprocessor;
+   @FindBy(xpath = "//div[contains(text(),'PET')]/following-sibling::div[text()=' DELIVERED TO PROCESSOR ']") 
+   public WebElement petdeliveredtoprocessor;
+   @FindBy(xpath = "//label[contains(text(),'Delivered')]/input") 
+   public WebElement deliveredtoprocessorcheckbox;
+   @FindBy(xpath = "//span[contains(text(),'There are no results that match your search')]") 
+   public WebElement noresults;
+   @FindBy(xpath = "//pay-bonus/div/div/div/div/button/following-sibling::button") 
+   public WebElement btbonus;
+   @FindBy(xpath = "//button[text()='Test']") 
+   public WebElement test;
+   @FindBy(xpath = "//button[@class='close']") 
+   public WebElement close;
+   @FindBy(xpath = "//button[text()='Data Transfer']") 
+   public WebElement datatransfer;
+   @FindBy(xpath = "//label[contains(text(),'Select All')]") 
+   public WebElement selectall;
+   @FindBy(xpath = "//button[text()='Confirm Data Transfer']") 
+   public WebElement confirmdatatransfer;
+   @FindBy(xpath = "//button[text()='Cancel']") 
+   public WebElement cancel;
+   @FindBy(xpath = "(//button[text()='Cancel'])[2]") 
+   public WebElement cancel2;
+   @FindBy(xpath = "//div[text()='Upload']/parent::button") 
+   public WebElement upload;
+   @FindBy(xpath = "//label[text()='New offset name']/following-sibling::input") 
+   public WebElement offsetname;
+   @FindBy(xpath = "//label[text()='The new offset was created successfully. Successful: 1.']") 
+   public WebElement offsetsuccessful;
+   @FindBy(xpath = "//input[@id='file-upload']") 
+   public WebElement bulkcoupload;
+   @FindBy(xpath = "//button[contains(text(),'Select file')]") 
+   public WebElement selectfile;
+   @FindBy(xpath = "//h4[contains(text(),'Bulk Cashout Upload')]/parent::div/descendant::input[@id='file-upload']/following-sibling::span") 
+   public WebElement bulkcouploadcross;
+   @FindBy(xpath = "//span[contains(text(),'Upload a usable filetype(.xlsx, .csv) up to 5MB.')]") 
+   public WebElement uploadusablemessage;
+   @FindBy(xpath = "//span[contains(text(),'Invalid template, upload a correct template.')]") 
+   public WebElement uploadusablemessage2;
+   @FindBy(xpath = "//h4[contains(text(),'The uploaded file for Bulk Cashout was rejected due to ')]") 
+   public WebElement errorpopup;
+   @FindBy(xpath = "(//button[contains(text(),'Close')])[3]") 
+   public WebElement close3;
+   @FindBy(xpath = "//span[text()='Result']") 
+   public WebElement result;
+   @FindBy(xpath = "//span[text()='Success']") 
+   public WebElement success;
+   @FindBy(xpath = "(//span[text()='Success'])[2]") 
+   public WebElement success2;
+   @FindBy(xpath = "//span[text()='Failed']") 
+   public WebElement failed;
+   @FindBy(xpath = "(//span[text()='Failed'])[2]") 
+   public WebElement failed2;
+   @FindBy(xpath = "//div[contains(text(),'Export')]") 
+   public WebElement export;
+   @FindBy(xpath = "(//button[text()='Close'])[2]") 
+   public WebElement close2;
+   @FindBy(xpath = "//div[contains(text(),'KAREN')]/ancestor::tr/td/div/div[contains(text(),'Success')]") 
+   public WebElement karensuccess;
+   @FindBy(xpath = "//div[contains(text(),'Jonathan')]/ancestor::tr/td/div/div[contains(text(),'Failed')]") 
+   public List<WebElement> jonathanfailed;
+   @FindBy(xpath="//div[@class='body']/div/div/div[text()=' Branches ']")
+   private WebElement branches_TAB;
     
     
     
@@ -351,6 +419,7 @@ public class Orders extends BaseClass{
     public static String expectedexcHisPetBonus="Bonus 63";
     public static String expectedexcHisTotalKg="Total Weight: 19.00 KG";
     public static String expectedexcHisTotalBonus="133";
+    protected static String targetbonus="targetbonus" + RandomStringUtils.randomAlphabetic(5);
 
     public void clickOrdersTab() throws InterruptedException {
 		/*
@@ -422,6 +491,199 @@ public class Orders extends BaseClass{
 
 
     }
+    
+    public void bonustransfer() throws InterruptedException {
+    	datatransfer.click();
+    	Thread.sleep(10000);
+    	selectall.click();
+    	Thread.sleep(2000);
+    	confirmdatatransfer.click();
+    	offsetname.sendKeys(targetbonus);
+    	Thread.sleep(2000);
+    	confirm.click();
+    	ok.click();
+    	offsetsuccessful.isDisplayed();
+    	close.click();
+    	
+    	orders_tab.click();
+    	waitforloader();
+    	 ordersTab_bonus.click();
+    	 waitforloader();
+    	 name_SearchBox.click();
+         name_SearchBox.clear();
+         name_SearchBox.sendKeys(targetbonus);
+         waitforloader();
+         tableData_FirstRow.click();
+         waitforloader();
+         bonusApproval.click();
+         Thread.sleep(2000);
+         pccardheaderbutton.click();
+        
+         startApproval.click();
+        
+         pccardheader.click();
+         hdpedeliveredtoprocessor.isDisplayed();
+        
+         buytransactions.click();
+        
+         pccardheader.click();
+         hdpedeliveredtoprocessor.isDisplayed();
+        
+         deliveredtoprocessorcheckbox.click();
+         noresults.isDisplayed();
+         btbonus.click();
+         exchangehistory.click();
+         Thread.sleep(2000);
+         pccardheader.click();
+         Thread.sleep(2000);
+         Actions a = new Actions(alcDriver);
+         a.moveToElement(test).build().perform();
+    }
+    
+    
+    public void testsafterallmaterialstransferred(String name) throws InterruptedException {
+    	orders_tab.click();
+    	waitforloader();
+    	 ordersTab_bonus.click();
+    	 waitforloader();
+    	 name_SearchBox.click();
+         name_SearchBox.clear();
+         name_SearchBox.sendKeys(name);
+         waitforloader();
+         tableData_FirstRow.click();
+         waitforloader();
+         bonusApproval.click();
+         Thread.sleep(2000);
+         pccardheaderbutton.click();
+         startApproval.click();
+         deliveredtoprocessor.isDisplayed();
+         Thread.sleep(2000);
+         pccardheader.click();
+         Thread.sleep(2000);
+         hdpedeliveredtoprocessor.isDisplayed();
+         ldpedeliveredtoprocessor.isDisplayed();
+         petdeliveredtoprocessor.isDisplayed();
+         buytransactions.click();
+         deliveredtoprocessor.click();
+         Thread.sleep(2000);
+         pccardheader.click();
+         Thread.sleep(2000);
+         hdpedeliveredtoprocessor.isDisplayed();
+         ldpedeliveredtoprocessor.isDisplayed();
+         petdeliveredtoprocessor.isDisplayed();
+         deliveredtoprocessorcheckbox.click();
+         Thread.sleep(2000);
+         pccardheader.click();
+         Thread.sleep(2000);
+         hdpedeliveredtoprocessor.isDisplayed();
+         ldpedeliveredtoprocessor.isDisplayed();
+         petdeliveredtoprocessor.isDisplayed();
+         btbonus.click();
+         exchangehistory.click();
+         pccardheader.click();
+         Actions a = new Actions(alcDriver);
+         a.moveToElement(test).build().perform();
+        
+         
+    }
+    public void testsaftermaterialstransferred(String name) throws InterruptedException {
+    	orders_tab.click();
+    	waitforloader();
+    	 ordersTab_bonus.click();
+    	 waitforloader();
+    	 name_SearchBox.click();
+         name_SearchBox.clear();
+         name_SearchBox.sendKeys(name);
+         waitforloader();
+         tableData_FirstRow.click();
+         waitforloader();
+         bonusApproval.click();
+         Thread.sleep(2000);
+         pccardheaderbutton.click();
+         startApproval.click();
+         Thread.sleep(2000);
+         buytransactions.click();
+         Thread.sleep(2000);
+         deliveredtoprocessorcheckbox.click();
+         Thread.sleep(2000);
+         noresults.isDisplayed();
+         btbonus.click();
+         exchangehistory.click();
+         pccardheader.click();
+         Actions a = new Actions(alcDriver);
+         a.moveToElement(test).build().perform();
+        
+         
+    }
+    
+    public void testsafterselectedmaterialstransferred(String name) throws InterruptedException {
+    	orders_tab.click();
+    	waitforloader();
+    	 ordersTab_bonus.click();
+    	 waitforloader();
+    	 name_SearchBox.click();
+         name_SearchBox.clear();
+         name_SearchBox.sendKeys(name);
+         waitforloader();
+         tableData_FirstRow.click();
+         waitforloader();
+         bonusApproval.click();
+         Thread.sleep(2000);
+         pccardheaderbutton.click();
+        
+         startApproval.click();
+        
+         pccardheader.click();
+         hdpedeliveredtoprocessor.isDisplayed();
+        
+         buytransactions.click();
+        
+         pccardheader.click();
+         hdpedeliveredtoprocessor.isDisplayed();
+        
+         deliveredtoprocessorcheckbox.click();
+         noresults.isDisplayed();
+         btbonus.click();
+         exchangehistory.click();
+         pccardheader.click();
+         Actions a = new Actions(alcDriver);
+         a.moveToElement(test).build().perform();
+         
+    }
+    
+    public void testsafterselectedmaterialstransferred6693(String name) throws InterruptedException {
+    	orders_tab.click();
+    	waitforloader();
+    	 ordersTab_bonus.click();
+    	 waitforloader();
+    	 name_SearchBox.click();
+         name_SearchBox.clear();
+         name_SearchBox.sendKeys(name);
+         waitforloader();
+         tableData_FirstRow.click();
+         waitforloader();
+         bonusApproval.click();
+         Thread.sleep(2000);
+         pccardheaderbutton.click();
+        
+         startApproval.click();
+        Thread.sleep(2000);
+         buytransactions.click();
+         Thread.sleep(2000);
+         deliveredtoprocessorcheckbox.click();
+         Thread.sleep(2000);
+        
+         deliveredtoprocessor.isDisplayed();
+         pccardheader.click();
+         hdpedeliveredtoprocessor.isDisplayed();       
+         
+         btbonus.click();
+         exchangehistory.click();
+         pccardheader.click();
+         Actions a = new Actions(alcDriver);
+         a.moveToElement(test).build().perform();
+         
+    }
     public void verifyBonusPresentInSPOrder1(String spOrderId,int expectedTotalKg) throws InterruptedException {
 
         alcDriver.get("https://" + actual + "/#/admin/ordersoffsets/order/" + spOrderId);
@@ -479,284 +741,238 @@ public class Orders extends BaseClass{
         Assert.assertEquals(actualTotalKg,expectedTotalKg);
 
     }
-    public void createOrder687(String processorName) throws InterruptedException {
-
-
-        WebDriverWait wait = new WebDriverWait(alcDriver, Duration.ofSeconds(60));
-        orders_tab.click();
-        Thread.sleep(6000);
-        wait.until(ExpectedConditions.elementToBeClickable(ordersTab));
-        ordersTab.click();
-        wait.until(ExpectedConditions.elementToBeClickable(addIcon));
-        addIcon.click();
-        Thread.sleep(3000);
-        wait.until(ExpectedConditions.elementToBeClickable(orderNameTextFeild));
-        Thread.sleep(2000);
-        String randomOrderName = RandomStringUtils.randomAlphabetic(5);
-        order_Name="alc687"+randomOrderName;
-        orderNameTextFeild.sendKeys(order_Name);
-        System.out.println("Order Name : "+order_Name);
-
-        countryDropdown.click();
-        selectCountryPhilippines.click();
-
-        Thread.sleep(1000);
-        brandTextField.sendKeys("Plastic Ban");
-        Thread.sleep(2000);
-        brandPlasticBank.click();
-
-        startDate.click();
-        Select select_Year = new Select(selectYear);
-        // Select the option by its visible text (option name)
-        select_Year.selectByVisibleText("2022");
-        selectDate.click();
-
-        shippingDatewe.click();
-        // Select the option by its visible text (option name)
-        select_Year.selectByVisibleText("2025");
-        selectDate.click();
-
-        orderDate.click();
-
-        // Select the option by its visible text (option name)
-        select_Year.selectByVisibleText("2025");
-        selectDate.click();
-
-        String randomRefId = RandomStringUtils.randomAlphabetic(5);
-        refId="RefId_"+randomOrderName;
-        referenceIdTextField.sendKeys(refId);
-
-        Thread.sleep(2000);
-
-        Select selectType = new Select(typeDropdown);
-        // Select the option by its visible text (option name)
-        selectType.selectByVisibleText("PET");
-        Thread.sleep(2000);
-        weightTextField.sendKeys("10000");
-
-        assignProcessorButton.click();
-        wait.until(ExpectedConditions.visibilityOfAllElements(nameSearchField));
-        nameSearchField.click();
-        nameSearchField.sendKeys(processorName);
-        Thread.sleep(8000);
-        checkBoxInProcessorAssign.click();
-        confirmBtn.click();
-        createButton.click();
-        confirmBtn.click();
-
-        wait.until(ExpectedConditions.visibilityOfAllElements(closeBtnPopup));
-        TakesScreenshot ts = (TakesScreenshot) alcDriver;
-        byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Order Created screenshot ", new ByteArrayInputStream(screenshot));
-        Thread.sleep(2000);
-
-        closeBtnPopup.click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(nameSearchField));
-        Thread.sleep(3000);
-        nameSearchField.sendKeys(order_Name);
-        Thread.sleep(5000);
-        tableData_FirstRow.click();
-
-
-        wait.until(ExpectedConditions.elementToBeClickable(addFromExchangeHistoryButton));
-        Actions action = new Actions(alcDriver);
-        action.scrollToElement(addFromExchangeHistoryButton).build().perform();
-        addFromExchangeHistoryButton.click();
-        Thread.sleep(2000);
-        wait.until(ExpectedConditions.visibilityOf(sp_EPR_EligibleDropdown));
-        sp_EPR_EligibleDropdown.click();
-        Thread.sleep(2000);
-        //showAllDropdown.click();
-        Select selectOrder = new Select(sp_EPR_EligibleDropdown);
-        selectOrder.selectByVisibleText("Show All");
-        Thread.sleep(5000);
-
-        action.scrollToElement(lastItemOnPageOrder).build().perform();
-
-        Thread.sleep(4000);
-
-        Set<String>bonusExpected = new HashSet<>(Arrays.asList("Bonus 0","Bonus 0", "Bonus 80"));
-        Set<String>bonusOrdersExpected = new HashSet<>(Arrays.asList("System offset",Data.bonusName687+", System offset"));
-        Set<String>buyerSellerExpected = new HashSet<>(Arrays.asList(Data.branch3_Name687,Data.processor_Name687,Data.branch2_Name687,Data.processor_Name687));
-        Set<String>textGreenExpected = new HashSet<>(Arrays.asList("Bonus 80"));
-        //Set<String>textOrangeExpected = new HashSet<>(Arrays.asList("Bonus 28","Bonus 80"));
-        Set<String>totalKgExpected = new HashSet<>(Arrays.asList("Total Weight: 150.00 KG","Total Weight: 48.00 KG"));
-
-        Set<String> bonusActual = new HashSet<>();
-        Set<String> bonusOrdersActual = new HashSet<>();
-        Set<String> buyerSellerActual = new HashSet<>();
-        Set<String> textGreenActual = new HashSet<>();
-       // Set<String> textOrangeActual = new HashSet<>();
-        Set<String> totalKgActual = new HashSet<>();
-
-        for (WebElement ele1 : bonus) {
-            bonusActual.add(ele1.getText());
-        }
-        for (WebElement ele2 : bonusOrders) {
-            bonusOrdersActual.add(ele2.getText());
-        }
-        for (WebElement ele3 : buyerSeller) {
-            buyerSellerActual.add(ele3.getText());
-        }
-        for (WebElement ele4 : textGreen) {
-            textGreenActual.add(ele4.getText());
-        }
-//        for (WebElement ele5 : textOrange) {
-//            textOrangeExpected.add(ele5.getText());
-//        }
-        for (WebElement ele6 : totalWeight) {
-            totalKgActual.add(ele6.getText());
-        }
-
-        Thread.sleep(2000);
-
-        Assert.assertEquals(bonusActual, bonusExpected);
-        Assert.assertEquals(bonusOrdersActual, bonusOrdersExpected);
-        Assert.assertEquals(buyerSellerActual, buyerSellerExpected);
-        Assert.assertEquals(textGreenActual, textGreenExpected);
-        //Assert.assertEquals(textOrangeActual, textOrangeExpected);
-        Assert.assertEquals(totalKgActual, totalKgExpected);
-
-
-        Thread.sleep(2000);
-        TakesScreenshot ts1 = (TakesScreenshot) alcDriver;
-        byte[] screenshot1 = ts1.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Associated Transaction Items from Exchange History ", new ByteArrayInputStream(screenshot1));
-        Thread.sleep(1000);
-
-        action.moveToElement(checkBoxWithOutBonus).click().build().perform();
-
-        //checkBoxWithOutBonus.click();
-        Thread.sleep(2000);
-        String actualTotalKgAtTopWitoutBonus=totalKgAtTop.getText();
-        Thread.sleep(1000);
-        String expectedTotalKgAtTopWitoutBonus="8";
-        Assert.assertEquals(actualTotalKgAtTopWitoutBonus, expectedTotalKgAtTopWitoutBonus);
-
-        confirmBtn.click();
-        Thread.sleep(2000);
-
-        alcDriver.navigate().refresh();
-
-
-        wait.until(ExpectedConditions.elementToBeClickable(addFromExchangeHistoryButton));
-
-        action.scrollToElement(addFromExchangeHistoryButton).build().perform();
-        addFromExchangeHistoryButton.click();
-        //Thread.sleep(2000);
-        //wait.until(ExpectedConditions.visibilityOf(sp_EPR_EligibleDropdown));
-//        sp_EPR_EligibleDropdown.click();
-        //Thread.sleep(2000);
-        //showAllDropdown.click();
-//        Select selectOrder = new Select(sp_EPR_EligibleDropdown);
-//        selectOrder.selectByVisibleText("Show All");
-//        Thread.sleep(5000);
-
-//        action.scrollToElement(lastItemOnPageOrder).build().perform();
-
-        Thread.sleep(4000);
-
-        Set<String>bonusExpectedD = new HashSet<>(Arrays.asList("Bonus 0"));
-        Set<String>bonusOrdersExpectedD = new HashSet<>(Arrays.asList("System offset"));
-        Set<String>buyerSellerExpectedD = new HashSet<>(Arrays.asList(Data.branch3_Name687,Data.processor_Name687));
-//        Set<String>textGreenExpectedD = new HashSet<>(Arrays.asList("Bonus 0"));
-        //Set<String>textOrangeExpectedD = new HashSet<>(Arrays.asList("Bonus 28","Bonus 80"));
-        Set<String>totalKgExpectedD = new HashSet<>(Arrays.asList("Total Weight: 150.00 KG"));
-
-        Set<String> bonusActualD = new HashSet<>();
-        Set<String> bonusOrdersActualD = new HashSet<>();
-        Set<String> buyerSellerActualD = new HashSet<>();
-        Set<String> textGreenActualD = new HashSet<>();
-        // Set<String> textOrangeActualD = new HashSet<>();
-        Set<String> totalKgActualD = new HashSet<>();
-
-        for (WebElement ele11 : bonus) {
-            bonusActualD.add(ele11.getText());
-        }
-        for (WebElement ele22 : bonusOrders) {
-            bonusOrdersActualD.add(ele22.getText());
-        }
-        for (WebElement ele33 : buyerSeller) {
-            buyerSellerActualD.add(ele33.getText());
-        }
-//        for (WebElement ele44 : textGreen) {
-//            textGreenActualD.add(ele44.getText());
-//        }
-//        for (WebElement ele55 : textOrange) {
-//            textOrangeExpectedD.add(ele55.getText());
-//        }
-        for (WebElement ele66 : totalWeight) {
-            totalKgActualD.add(ele66.getText());
-        }
-
-        Thread.sleep(2000);
-
-        Assert.assertEquals(bonusActualD, bonusExpectedD);
-        Assert.assertEquals(bonusOrdersActualD, bonusOrdersExpectedD);
-        Assert.assertEquals(buyerSellerActualD, buyerSellerExpectedD);
-        //Assert.assertEquals(textGreenActualD, textGreenExpectedD);
-        //Assert.assertEquals(textOrangeActualD, textOrangeExpectedD);
-        Assert.assertEquals(totalKgActualD, totalKgExpectedD);
-
-
-        Thread.sleep(2000);
-
-        byte[] screenshot2 = ts1.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Associated Transaction Items from Exchange History ", new ByteArrayInputStream(screenshot2));
-        Thread.sleep(1000);
-
-        //checkBoxSearchOffsets.click();
-
-        action.moveToElement(checkBoxDonation).click().build().perform();
-        Thread.sleep(2000);
-
-        String actualTotalKgAtTopDonation=totalKgAtTop.getText();
-        Thread.sleep(1000);
-        String expectedTotalKgAtTopDonation="150";
-        Assert.assertEquals(actualTotalKgAtTopDonation, expectedTotalKgAtTopDonation);
-       // checkBoxDonation.click();
-
-        confirmBtn.click();
-
-        Thread.sleep(3000);
-        String totalCollectedKgInDashBoard=totalCollectedKg.getText();
-
-        action.scrollToElement(total).build().perform();
-        assertTrue(totalCollectedKgInDashBoard.equals("Total Collected: 158 Kg"));
-
-        Thread.sleep(2000);
-        byte[] screenshot4 = ts1.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Doughnut Graph ", new ByteArrayInputStream(screenshot4));
-        Thread.sleep(1000);
-
-        auditTrailTag.click();
-        Thread.sleep(2000);
-
-        wait.until(ExpectedConditions.visibilityOf(totalWeight.get(0)));
-
-        action.scrollToElement(plasticChain2).build().perform();
-        Thread.sleep(2000);
-        byte[] screenshot3 = ts1.getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("Added transactions in Audit Trail ", new ByteArrayInputStream(screenshot3));
-        Thread.sleep(2000);
-
-
-        Set<String>expectedTotakWeightInAuditTrail = new HashSet<>(Arrays.asList("Total Weight: 150.00 KG","Total Weight: 8.00 KG"));
-
-        Set<String> actualTotakWeightInAuditTrail = new HashSet<>();
-
-        Thread.sleep(2000);
-
-        for (WebElement ele : totalWeight) {
-            actualTotakWeightInAuditTrail.add(ele.getText());
-        }
-        Thread.sleep(2000);
-
-        Assert.assertEquals(actualTotakWeightInAuditTrail,expectedTotakWeightInAuditTrail);
-
-    }
-
+    
+	/*
+	 * public void createOrder687(String processorName) throws InterruptedException
+	 * {
+	 * 
+	 * 
+	 * WebDriverWait wait = new WebDriverWait(alcDriver, Duration.ofSeconds(60));
+	 * orders_tab.click(); Thread.sleep(6000);
+	 * wait.until(ExpectedConditions.elementToBeClickable(ordersTab));
+	 * ordersTab.click();
+	 * wait.until(ExpectedConditions.elementToBeClickable(addIcon));
+	 * addIcon.click(); Thread.sleep(3000);
+	 * wait.until(ExpectedConditions.elementToBeClickable(orderNameTextFeild));
+	 * Thread.sleep(2000); String randomOrderName =
+	 * RandomStringUtils.randomAlphabetic(5); order_Name="alc687"+randomOrderName;
+	 * orderNameTextFeild.sendKeys(order_Name);
+	 * System.out.println("Order Name : "+order_Name);
+	 * 
+	 * countryDropdown.click(); selectCountryPhilippines.click();
+	 * 
+	 * Thread.sleep(1000); brandTextField.sendKeys("Plastic Ban");
+	 * Thread.sleep(2000); brandPlasticBank.click();
+	 * 
+	 * startDate.click(); Select select_Year = new Select(selectYear); // Select the
+	 * option by its visible text (option name)
+	 * select_Year.selectByVisibleText("2022"); selectDate.click();
+	 * 
+	 * shippingDatewe.click(); // Select the option by its visible text (option
+	 * name) select_Year.selectByVisibleText("2025"); selectDate.click();
+	 * 
+	 * orderDate.click();
+	 * 
+	 * // Select the option by its visible text (option name)
+	 * select_Year.selectByVisibleText("2025"); selectDate.click();
+	 * 
+	 * String randomRefId = RandomStringUtils.randomAlphabetic(5);
+	 * refId="RefId_"+randomOrderName; referenceIdTextField.sendKeys(refId);
+	 * 
+	 * Thread.sleep(2000);
+	 * 
+	 * Select selectType = new Select(typeDropdown); // Select the option by its
+	 * visible text (option name) selectType.selectByVisibleText("PET");
+	 * Thread.sleep(2000); weightTextField.sendKeys("10000");
+	 * 
+	 * assignProcessorButton.click();
+	 * wait.until(ExpectedConditions.visibilityOfAllElements(nameSearchField));
+	 * nameSearchField.click(); nameSearchField.sendKeys(processorName);
+	 * Thread.sleep(8000); checkBoxInProcessorAssign.click(); confirmBtn.click();
+	 * createButton.click(); confirmBtn.click();
+	 * 
+	 * wait.until(ExpectedConditions.visibilityOfAllElements(closeBtnPopup));
+	 * TakesScreenshot ts = (TakesScreenshot) alcDriver; byte[] screenshot =
+	 * ts.getScreenshotAs(OutputType.BYTES);
+	 * Allure.addAttachment("Order Created screenshot ", new
+	 * ByteArrayInputStream(screenshot)); Thread.sleep(2000);
+	 * 
+	 * closeBtnPopup.click();
+	 * 
+	 * wait.until(ExpectedConditions.elementToBeClickable(nameSearchField));
+	 * Thread.sleep(3000); nameSearchField.sendKeys(order_Name); Thread.sleep(5000);
+	 * tableData_FirstRow.click();
+	 * 
+	 * 
+	 * wait.until(ExpectedConditions.elementToBeClickable(
+	 * addFromExchangeHistoryButton)); Actions action = new Actions(alcDriver);
+	 * action.scrollToElement(addFromExchangeHistoryButton).build().perform();
+	 * addFromExchangeHistoryButton.click(); Thread.sleep(2000);
+	 * wait.until(ExpectedConditions.visibilityOf(sp_EPR_EligibleDropdown));
+	 * sp_EPR_EligibleDropdown.click(); Thread.sleep(2000);
+	 * //showAllDropdown.click(); Select selectOrder = new
+	 * Select(sp_EPR_EligibleDropdown); selectOrder.selectByVisibleText("Show All");
+	 * Thread.sleep(5000);
+	 * 
+	 * action.scrollToElement(lastItemOnPageOrder).build().perform();
+	 * 
+	 * Thread.sleep(4000);
+	 * 
+	 * Set<String>bonusExpected = new HashSet<>(Arrays.asList("Bonus 0","Bonus 0",
+	 * "Bonus 80")); Set<String>bonusOrdersExpected = new
+	 * HashSet<>(Arrays.asList("System offset",Data.bonusName687+", System offset"))
+	 * ; Set<String>buyerSellerExpected = new
+	 * HashSet<>(Arrays.asList(Data.branch3_Name687,Data.processor_Name687,Data.
+	 * branch2_Name687,Data.processor_Name687)); Set<String>textGreenExpected = new
+	 * HashSet<>(Arrays.asList("Bonus 80")); //Set<String>textOrangeExpected = new
+	 * HashSet<>(Arrays.asList("Bonus 28","Bonus 80")); Set<String>totalKgExpected =
+	 * new
+	 * HashSet<>(Arrays.asList("Total Weight: 150.00 KG","Total Weight: 48.00 KG"));
+	 * 
+	 * Set<String> bonusActual = new HashSet<>(); Set<String> bonusOrdersActual =
+	 * new HashSet<>(); Set<String> buyerSellerActual = new HashSet<>(); Set<String>
+	 * textGreenActual = new HashSet<>(); // Set<String> textOrangeActual = new
+	 * HashSet<>(); Set<String> totalKgActual = new HashSet<>();
+	 * 
+	 * for (WebElement ele1 : bonus) { bonusActual.add(ele1.getText()); } for
+	 * (WebElement ele2 : bonusOrders) { bonusOrdersActual.add(ele2.getText()); }
+	 * for (WebElement ele3 : buyerSeller) { buyerSellerActual.add(ele3.getText());
+	 * } for (WebElement ele4 : textGreen) { textGreenActual.add(ele4.getText()); }
+	 * // for (WebElement ele5 : textOrange) { //
+	 * textOrangeExpected.add(ele5.getText()); // } for (WebElement ele6 :
+	 * totalWeight) { totalKgActual.add(ele6.getText()); }
+	 * 
+	 * Thread.sleep(2000);
+	 * 
+	 * Assert.assertEquals(bonusActual, bonusExpected);
+	 * Assert.assertEquals(bonusOrdersActual, bonusOrdersExpected);
+	 * Assert.assertEquals(buyerSellerActual, buyerSellerExpected);
+	 * Assert.assertEquals(textGreenActual, textGreenExpected);
+	 * //Assert.assertEquals(textOrangeActual, textOrangeExpected);
+	 * Assert.assertEquals(totalKgActual, totalKgExpected);
+	 * 
+	 * 
+	 * Thread.sleep(2000); TakesScreenshot ts1 = (TakesScreenshot) alcDriver; byte[]
+	 * screenshot1 = ts1.getScreenshotAs(OutputType.BYTES);
+	 * Allure.addAttachment("Associated Transaction Items from Exchange History ",
+	 * new ByteArrayInputStream(screenshot1)); Thread.sleep(1000);
+	 * 
+	 * action.moveToElement(checkBoxWithOutBonus).click().build().perform();
+	 * 
+	 * //checkBoxWithOutBonus.click(); Thread.sleep(2000); String
+	 * actualTotalKgAtTopWitoutBonus=totalKgAtTop.getText(); Thread.sleep(1000);
+	 * String expectedTotalKgAtTopWitoutBonus="8";
+	 * Assert.assertEquals(actualTotalKgAtTopWitoutBonus,
+	 * expectedTotalKgAtTopWitoutBonus);
+	 * 
+	 * confirmBtn.click(); Thread.sleep(2000);
+	 * 
+	 * alcDriver.navigate().refresh();
+	 * 
+	 * 
+	 * wait.until(ExpectedConditions.elementToBeClickable(
+	 * addFromExchangeHistoryButton));
+	 * 
+	 * action.scrollToElement(addFromExchangeHistoryButton).build().perform();
+	 * addFromExchangeHistoryButton.click(); //Thread.sleep(2000);
+	 * //wait.until(ExpectedConditions.visibilityOf(sp_EPR_EligibleDropdown)); //
+	 * sp_EPR_EligibleDropdown.click(); //Thread.sleep(2000);
+	 * //showAllDropdown.click(); // Select selectOrder = new
+	 * Select(sp_EPR_EligibleDropdown); //
+	 * selectOrder.selectByVisibleText("Show All"); // Thread.sleep(5000);
+	 * 
+	 * // action.scrollToElement(lastItemOnPageOrder).build().perform();
+	 * 
+	 * Thread.sleep(4000);
+	 * 
+	 * Set<String>bonusExpectedD = new HashSet<>(Arrays.asList("Bonus 0"));
+	 * Set<String>bonusOrdersExpectedD = new
+	 * HashSet<>(Arrays.asList("System offset")); Set<String>buyerSellerExpectedD =
+	 * new HashSet<>(Arrays.asList(Data.branch3_Name687,Data.processor_Name687)); //
+	 * Set<String>textGreenExpectedD = new HashSet<>(Arrays.asList("Bonus 0"));
+	 * //Set<String>textOrangeExpectedD = new
+	 * HashSet<>(Arrays.asList("Bonus 28","Bonus 80")); Set<String>totalKgExpectedD
+	 * = new HashSet<>(Arrays.asList("Total Weight: 150.00 KG"));
+	 * 
+	 * Set<String> bonusActualD = new HashSet<>(); Set<String> bonusOrdersActualD =
+	 * new HashSet<>(); Set<String> buyerSellerActualD = new HashSet<>();
+	 * Set<String> textGreenActualD = new HashSet<>(); // Set<String>
+	 * textOrangeActualD = new HashSet<>(); Set<String> totalKgActualD = new
+	 * HashSet<>();
+	 * 
+	 * for (WebElement ele11 : bonus) { bonusActualD.add(ele11.getText()); } for
+	 * (WebElement ele22 : bonusOrders) { bonusOrdersActualD.add(ele22.getText()); }
+	 * for (WebElement ele33 : buyerSeller) {
+	 * buyerSellerActualD.add(ele33.getText()); } // for (WebElement ele44 :
+	 * textGreen) { // textGreenActualD.add(ele44.getText()); // } // for
+	 * (WebElement ele55 : textOrange) { //
+	 * textOrangeExpectedD.add(ele55.getText()); // } for (WebElement ele66 :
+	 * totalWeight) { totalKgActualD.add(ele66.getText()); }
+	 * 
+	 * Thread.sleep(2000);
+	 * 
+	 * Assert.assertEquals(bonusActualD, bonusExpectedD);
+	 * Assert.assertEquals(bonusOrdersActualD, bonusOrdersExpectedD);
+	 * Assert.assertEquals(buyerSellerActualD, buyerSellerExpectedD);
+	 * //Assert.assertEquals(textGreenActualD, textGreenExpectedD);
+	 * //Assert.assertEquals(textOrangeActualD, textOrangeExpectedD);
+	 * Assert.assertEquals(totalKgActualD, totalKgExpectedD);
+	 * 
+	 * 
+	 * Thread.sleep(2000);
+	 * 
+	 * byte[] screenshot2 = ts1.getScreenshotAs(OutputType.BYTES);
+	 * Allure.addAttachment("Associated Transaction Items from Exchange History ",
+	 * new ByteArrayInputStream(screenshot2)); Thread.sleep(1000);
+	 * 
+	 * //checkBoxSearchOffsets.click();
+	 * 
+	 * action.moveToElement(checkBoxDonation).click().build().perform();
+	 * Thread.sleep(2000);
+	 * 
+	 * String actualTotalKgAtTopDonation=totalKgAtTop.getText(); Thread.sleep(1000);
+	 * String expectedTotalKgAtTopDonation="150";
+	 * Assert.assertEquals(actualTotalKgAtTopDonation,
+	 * expectedTotalKgAtTopDonation); // checkBoxDonation.click();
+	 * 
+	 * confirmBtn.click();
+	 * 
+	 * Thread.sleep(3000); String
+	 * totalCollectedKgInDashBoard=totalCollectedKg.getText();
+	 * 
+	 * action.scrollToElement(total).build().perform();
+	 * assertTrue(totalCollectedKgInDashBoard.equals("Total Collected: 158 Kg"));
+	 * 
+	 * Thread.sleep(2000); byte[] screenshot4 =
+	 * ts1.getScreenshotAs(OutputType.BYTES);
+	 * Allure.addAttachment("Doughnut Graph ", new
+	 * ByteArrayInputStream(screenshot4)); Thread.sleep(1000);
+	 * 
+	 * auditTrailTag.click(); Thread.sleep(2000);
+	 * 
+	 * wait.until(ExpectedConditions.visibilityOf(totalWeight.get(0)));
+	 * 
+	 * action.scrollToElement(plasticChain2).build().perform(); Thread.sleep(2000);
+	 * byte[] screenshot3 = ts1.getScreenshotAs(OutputType.BYTES);
+	 * Allure.addAttachment("Added transactions in Audit Trail ", new
+	 * ByteArrayInputStream(screenshot3)); Thread.sleep(2000);
+	 * 
+	 * 
+	 * Set<String>expectedTotakWeightInAuditTrail = new
+	 * HashSet<>(Arrays.asList("Total Weight: 150.00 KG","Total Weight: 8.00 KG"));
+	 * 
+	 * Set<String> actualTotakWeightInAuditTrail = new HashSet<>();
+	 * 
+	 * Thread.sleep(2000);
+	 * 
+	 * for (WebElement ele : totalWeight) {
+	 * actualTotakWeightInAuditTrail.add(ele.getText()); } Thread.sleep(2000);
+	 * 
+	 * Assert.assertEquals(actualTotakWeightInAuditTrail,
+	 * expectedTotakWeightInAuditTrail);
+	 * 
+	 * }
+	 */
     public void verifyBonusPresentInSPOrder2(String spOrderId,int expectedTotalKg) throws InterruptedException {
 
         alcDriver.get("https://" + actual + "/#/admin/ordersoffsets/order/" + spOrderId);
@@ -1041,7 +1257,7 @@ public class Orders extends BaseClass{
         String kgDelTop=kgDeliveredToplun.getText();
         String cleanedString = kgDelTop.replace(",", "");
         int kgDelTopIntValue = Integer.parseInt(cleanedString);
-        System.out.println(kgDelTopIntValue);
+        System.out.println("kg del top int value = "+kgDelTopIntValue);
 
         action.scrollToElement(total).build().perform();
 
@@ -1050,13 +1266,13 @@ public class Orders extends BaseClass{
         String pk= pendingKg.getText();
 
         int intTotal=convertStringToInteger(t);
-        System.out.println(intTotal);
+        System.out.println("int total = "+intTotal);
 
         int intTotalCollectedKg=stringToInt(tc);
-        System.out.println(intTotalCollectedKg);
+        System.out.println("int total collected kg = "+intTotalCollectedKg);
 
         int intpendingKg=stringToInt(pk);
-        System.out.println(intpendingKg);
+        System.out.println("int pending kg = "+intpendingKg);
 
         assertTrue(intTotal==intTotalCollectedKg+intpendingKg);
         assertTrue(intTotalCollectedKg==kgDelTopIntValue+kgCollectedByProcessor);
@@ -1112,7 +1328,7 @@ public class Orders extends BaseClass{
     }
 
     public Boolean searchCreatedBrandInBonusAndSave(String name) throws InterruptedException{
-        wait30.until(ExpectedConditions.elementToBeClickable(bonusSettings));
+        wait300.until(ExpectedConditions.elementToBeClickable(bonusSettings));
         bonusSettings.click();
         Thread.sleep(3000);
         editBonusDetails.click();

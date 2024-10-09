@@ -58,7 +58,7 @@ public class Brands extends BaseClass {
     public void search_byName(String name) throws InterruptedException {
 //        wait30.until(ExpectedConditions.invisibilityOf(pageLoader));
         Thread.sleep(3000);
-        wait30.until(ExpectedConditions.elementToBeClickable(name_SearchBox));
+        wait300.until(ExpectedConditions.elementToBeClickable(name_SearchBox));
         name_SearchBox.click();
         name_SearchBox.clear();
         name_SearchBox.sendKeys(name);
