@@ -1,4 +1,4 @@
-name: QA Env Run alchemy only test cases ALC-4363, ALC-4362, ALC-666, ALC-4356, ALC-4355, ALC-4353
+name: STG Env Run alchemy only test cases ALC-4363, ALC-4362, ALC-666, ALC-4356, ALC-4355, ALC-4353
 
 on:
   workflow_dispatch: # This allows the workflow to be triggered manually
@@ -85,7 +85,7 @@ jobs:
           'Content-Type' = 'application/json'
         }
         $body = @{
-          text = "QA Env Alchemy Test Cases Regressoin (ALC.2024.R14 + APP.2024.R04) Automated Execution Completed. Open this link to check the report: $env:SHAREABLE_URL"
+          text = "STG Env Alchemy Test Cases Regressoin (ALC.2024.R14 + APP.2024.R04) Automated Execution Completed. Open this link to check the report: $env:SHAREABLE_URL"
         } | ConvertTo-Json
         Invoke-RestMethod -Uri $env:SLACK_WEBHOOK -Method Post -Headers $headers -Body $body
         
